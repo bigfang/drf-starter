@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: tmpl:slim-0.1.0
+    restart: always
+    environment:
+      - LANG=C.UTF-8
+    volumes:
+      - .:/opt/server
+    networks:
+      - web_nw
+      - db_nw
+    depends_on:
+      - db
+      # - redis
+    command:
+      ${RUN_CMD:-sh}
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tmpl
+    ports:
+      - ${DOCKER_DB_PORT:-5432}:5432
+    env_file:
+      - .env
+    networks:
+      - db_nw
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6-alpine
+    restart: always
+    volumes:
+      - ./db/redis:/data
+    networks:
+      - db_nw
+
+
+networks:
+  db_nw:
+    driver: bridge
+  web_nw:
+    driver: bridge
