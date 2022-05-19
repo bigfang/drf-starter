@@ -75,3 +75,6 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+
+
+.env
