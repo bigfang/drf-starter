@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'tmpl.urls'
+ROOT_URLCONF = 'config.urls'
 AUTH_USER_MODEL = 'account.User'
 
 REST_FRAMEWORK = {
@@ -94,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tmpl.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
