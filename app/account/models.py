@@ -8,9 +8,6 @@ from common.models import TimestampMixin, DeleteMixin
 
 
 class User(AbstractUser, TimestampMixin, DeleteMixin):
-    avatar = models.URLField(help_text='avatar', max_length=1024, null=True, blank=True)
-
-    USERNAME_FIELD = 'username'
 
     class Meta:
         db_table = 'auth_user'

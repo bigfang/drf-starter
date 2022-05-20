@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework_simplejwt.views import TokenRefreshView
 
 from app.account import views as account_views
 
@@ -26,6 +27,10 @@ router.register('users', account_views.UserViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/profile', account_views.ProfileAPIView.as_view()),
+    path('api/auth/login', account_views.LoginAPIView.as_view()),
+    path('api/auth/logout', account_views.LogoutAPIView.as_view()),
+    path('api/auth/refresh', TokenRefreshView.as_view(), name='token_refresh')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json'])
