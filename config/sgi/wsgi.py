@@ -1,5 +1,5 @@
 """
-WSGI config for tmpl project.
+WSGI config for drf-starter project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -1,7 +1,7 @@
-FROM python:3.10.4-slim
+FROM python:3.11-slim
 
-ENV PYPI_MIRROR=https://pypi.doubanio.com/simple
-# ENV PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
+# ENV PYPI_MIRROR=https://pypi.doubanio.com/simple
+ENV PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
 ENV TZ=Asia/Shanghai
 
 WORKDIR /opt/server
@@ -13,6 +13,6 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 
 RUN pip install -i $PYPI_MIRROR --no-cache-dir poetry \
     && poetry config virtualenvs.create false \
-    && poetry install --no-root -E pg
+    && poetry install --no-root
 
 CMD ["python", "manage.py", "runserver"]

@@ -1,29 +1,22 @@
-[project]
-name = ""
+[tool.poetry]
+name = "drf-starter"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "", email = ""},
-]
-dependencies = [
-    "django>=4.0.4",
-    "djangorestframework>=3.13.1",
-    "django-environ>=0.8.1",
-    "django-filter>=21.1",
-    "djangorestframework-simplejwt>=5.1.0",
-]
-requires-python = ">=3.10"
-license = {text = "MIT"}
-[project.optional-dependencies]
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "drf_starter"}]
 
-[tool.pdm]
-[tool.pdm.dev-dependencies]
-dev = [
-    "ipdb>=0.13.9",
-    "flake8>=4.0.1",
-    "psycopg2-binary>=2.9.3",
-]
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.3"
+djangorestframework = "^3.14.0"
+django-filter = "^23.2"
+django-environ = "^0.10.0"
+djangorestframework-simplejwt = "^5.2.2"
+psycopg = {extras = ["binary", "pool"], version = "^3.1.9"}
+
 
 [build-system]
-requires = ["pdm-pep517>=0.12.0"]
-build-backend = "pdm.pep517.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

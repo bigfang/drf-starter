@@ -10,15 +10,15 @@ class TimestampMixin(models.Model):
         abstract = True
 
 
-class DeletedManager(models.Manager):
+class DeleteManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(deleted_at=None)
 
 
 class DeleteMixin(models.Model):
-    deleted_at = models.DateTimeField("记录删除时间", null=True, blank=True, default=None)
+    deleted_at = models.DateTimeField('记录删除时间', null=True, blank=True, default=None)
 
-    objects = DeletedManager()
+    objects = DeleteManager()
     allobjects = models.Manager()
 
     @property
