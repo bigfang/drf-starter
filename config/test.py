@@ -8,6 +8,8 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': ':memory:',
+        'TEST_NAME': ':memory:',
+        'TEST_CHARSET': 'UTF8',
     }
 }

@@ -19,6 +19,8 @@ psycopg = {extras = ["binary", "pool"], version = "^3.1.9"}
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
+pytest-django = "^4.5.2"
+factory-boy = "^3.2.1"
 
 [build-system]
 requires = ["poetry-core"]

@@ -82,7 +82,7 @@ REST_FRAMEWORK = {
     ],
     'SEARCH_PARAM': 's',
     'ORDERING_PARAM': 'sort',
-    'DEFAULT_PAGINATION_CLASS': 'common.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
