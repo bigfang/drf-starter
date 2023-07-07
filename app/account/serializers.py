@@ -32,7 +32,7 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise serializers.ValidationError('Incorrect username or password.')
 
-        if user.is_deleted:
+        if (not user.is_active) or user.is_deleted:
             raise serializers.ValidationError('User is disabled.')
 
         return user
