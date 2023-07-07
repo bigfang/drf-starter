@@ -14,11 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+# from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
-from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_simplejwt.views import TokenRefreshView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from app.account import views as account_views
 
@@ -28,12 +29,17 @@ router.register('users', account_views.UserViewSet)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/profile', account_views.ProfileAPIView.as_view()),
     path('api/auth/login', account_views.LoginAPIView.as_view()),
     path('api/auth/logout', account_views.LogoutAPIView.as_view()),
-    path('api/auth/refresh', TokenRefreshView.as_view(), name='token_refresh')
+    path('api/auth/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json'])
+if settings.DJANGO_ENV == 'dev':
+    urlpatterns.extend([
+        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+        path('api/schema/swagger-ui', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+        path('api/schema/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    ])

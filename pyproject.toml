@@ -15,6 +15,7 @@ django-filter = "^23.2"
 django-environ = "^0.10.0"
 djangorestframework-simplejwt = "^5.2.2"
 psycopg = {extras = ["binary", "pool"], version = "^3.1.9"}
+drf-spectacular = "^0.26.3"
 
 
 [tool.poetry.group.dev.dependencies]

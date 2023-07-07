@@ -20,3 +20,18 @@ DATABASES = {
         'PORT': env('DB_PORT', default=5432)
     }
 }
+
+INSTALLED_APPS.extend([
+    'drf_spectacular'
+])
+
+REST_FRAMEWORK.update({
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+})
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'drf-starter',
+    'DESCRIPTION': 'Project description',
+    'VERSION': '0.1.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
