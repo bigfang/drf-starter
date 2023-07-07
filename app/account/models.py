@@ -1,5 +1,3 @@
-from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -11,7 +9,7 @@ class User(AbstractUser, TimestampMixin, DeleteMixin):
     first_name = None
     last_name = None
 
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS: list[str] = ['email']
 
     class Meta:
         db_table = 'auth_user'
@@ -27,8 +25,8 @@ class User(AbstractUser, TimestampMixin, DeleteMixin):
             'access': str(refresh.access_token),
         }
 
-    def get_full_name(self):
+    def get_full_name(self) -> str:
         return None
 
-    def get_short_name(self):
+    def get_short_name(self) -> str:
         return None
