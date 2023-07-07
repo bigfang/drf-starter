@@ -9,6 +9,7 @@ services:
     restart: always
     environment:
       - LANG=C.UTF-8
+      - DJANGO_ENV=prod
     volumes:
       - .:/opt/server
     networks:
