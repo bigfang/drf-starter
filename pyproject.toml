@@ -14,11 +14,11 @@ djangorestframework = "^3.14.0"
 django-filter = "^23.2"
 django-environ = "^0.10.0"
 djangorestframework-simplejwt = "^5.2.2"
-psycopg = {extras = ["binary", "pool"], version = "^3.1.9"}
-drf-spectacular = "^0.26.3"
+psycopg = {extras = ["binary"], version = "^3.1.9"}
 
 
 [tool.poetry.group.dev.dependencies]
+drf-spectacular = "^0.26.3"
 flake8 = "^6.0.0"
 pytest-django = "^4.5.2"
 factory-boy = "^3.2.1"
