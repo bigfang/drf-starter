@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 
@@ -16,13 +17,13 @@ class DeleteManager(models.Manager):
 
 
 class DeleteMixin(models.Model):
-    deleted_at = models.DateTimeField('记录删除时间', null=True, blank=True, default=None)
+    deleted_at = models.DateTimeField(_('deleted at'), null=True, blank=True, default=None)
 
     objects = DeleteManager()
     allobjects = models.Manager()
 
     @property
-    def is_deleted(self):
+    def is_deleted(self) -> bool:
         return True if self.deleted_at else False
 
     class Meta:

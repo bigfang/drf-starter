@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
-from rest_framework_simplejwt.tokens import RefreshToken
 
 from common.models import TimestampMixin, DeleteMixin
 
@@ -16,17 +15,17 @@ class User(AbstractUser, TimestampMixin, DeleteMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
+    def get_full_name(self) -> None:
+        pass
+
+    def get_short_name(self) -> None:
+        pass
+
+
+class UserToken(User):
+    class Meta:
+        proxy = True
+
     @property
-    def token(self):
-        refresh = RefreshToken.for_user(self)
-
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        }
-
-    def get_full_name(self) -> str:
-        return None
-
-    def get_short_name(self) -> str:
-        return None
+    def token(self) -> dict[str, str] | None:
+        pass
